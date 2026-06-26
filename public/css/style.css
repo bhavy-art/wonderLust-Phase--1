@@ -59,7 +59,7 @@ body{
 
 
 /* cards */
-.card{
+.listing-card{
     border: none !important; 
     margin-bottom: 2rem;
 }
@@ -96,4 +96,13 @@ body{
 
 .btns{
     display: flex;
+}
+
+/* Review */
+.review-card{
+    display: flex;
+    /* padding-left: 5px; */
+    justify-content: space-evenly;
+    align-items: center;
+    /* border: 1px solid black; */
 }
