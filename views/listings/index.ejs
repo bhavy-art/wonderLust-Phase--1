@@ -1,7 +1,44 @@
 <% layout("/layouts/boilerplate") %> 
 <%= success %>
+
+<style>
+    #filters {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+
+    .filter{
+        text-align: center;
+        margin-right: 2rem;
+        margin-top: 2rem;
+        opacity: 0.7;
+    }
+
+    .filter:hover{
+        opacity: 1;
+        cursor: pointer;
+        color: black;
+    }
+
+    .tax-info{
+        display: none;
+    }
+
+    .tax-toggle{
+        border: 1px solid gray;
+        border-radius: 10px;
+        height: 3.25rem;
+        padding: 1rem;
+        margin-left: 3rem;
+        display: flex;
+        align-items: center;
+    }
+</style>
+
+
 <body>
-    <h3>All Listings</h3>
+    <!-- <h3>All Listings</h3> -->
     <!-- <form method="GET" action="/listing/new">
         <button>Create new listing</button>
     </form> -->
@@ -23,7 +60,59 @@
     <!-- </div> -->
 
 
-    <div class="row">
+    <div id="filters">
+        <div class="filter">
+            <div><i class="fa-solid fa-fire"></i></div>
+                <p>Trending</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-bed"></i></div>
+                <p>Rooms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain-city"></i></div>
+                <p>Iconic Cities</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-mountain"></i></div>
+                <p>Montain</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-fort-awesome"></i></div>
+                <p>Castles</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-person-swimming"></i></div>
+                <p>Amazing Pools</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-campground"></i></div>
+                <p>Camping</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-solid fa-tractor"></i></div>
+                <p>Farms</p>
+        </div>
+        <div class="filter">
+            <div><i class="fa-brands fa-galactic-republic"></i></div>
+                <p>Arctic</p>
+        </div>
+         <div class="filter">
+            <div><i class="fa-solid fa-igloo"></i></div>
+                <p>Domes</p>
+        </div>
+        
+
+        <div class="tax-toggle">
+            <div class="form-check-reverse form-switch">
+                <input class="form-check-input" type="checkbox" role="switch" id="switchCheckDefault">
+                <label class="form-check-label" for="switchCheckDefault">Display total after taxes</label>
+            </div>
+        </div>
+        
+    </div>
+
+    <div class="row mt-3">
     <% for(let listing of allListing){ %>
         <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
             <a href="/listings/<%= listing._id %>" class="text-decoration-none text-dark">
@@ -40,6 +129,7 @@
                             <b><%= listing.title %></b>
                             <br>
                             ₹ <%= listing.price.toLocaleString("en-IN") %> / night
+                            <i class="tax-info">&nbsp; &nbsp; +18% GST</i>
                         </p>
                     </div>
                 </div>
@@ -54,3 +144,17 @@
             <% } %>
     </ul> -->
 </body>
+
+<script>
+        let taxSwitch = document.getElementById("switchCheckDefault");
+        taxSwitch.addEventListener("click", () => {
+        let taxInfo = document.getElementsByClassName("tax-info");
+        for(info of taxInfo){
+            if(info.style.display != "inline"){
+                info.style.display = "inline";
+            } else{
+                info.style.display = "none";
+            }
+        }
+        });
+</script>
