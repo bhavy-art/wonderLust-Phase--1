@@ -1,10 +1,89 @@
 const Listing = require("../models/listing");
 const axios = require("axios");
 
+// module.exports.index = async (req, res) => {
+//   const allListing = await Listing.find({});
+//   res.render("listings/index", { allListing });
+// };
+
+
+// module.exports.index = async (req, res) => {
+//     const { category } = req.query;
+
+//     let allListing;
+
+//     if (category) {
+//         allListing = await Listing.find({ category: category });
+//     } else {
+//         allListing = await Listing.find({});
+//     }
+
+//     res.render("listings/index", { allListing });
+// };
+
+// module.exports.index = async (req, res) => {
+//     const { category } = req.query;
+
+//     let allListing;
+
+//     if (category) {
+//         allListing = await Listing.find({ category });
+//     } else {
+//         allListing = await Listing.find({});
+//     }
+
+//     res.render("listings/index", {
+//         allListing,
+//         selectedCategory: category,
+//     });
+// };
+
+
 module.exports.index = async (req, res) => {
-  const allListing = await Listing.find({});
-  res.render("listings/index", { allListing });
+    const { category, search } = req.query;
+
+    let filter = {};
+
+    // Category filter
+    if (category) {
+        filter.category = category;
+    }
+
+    // Search filter
+    // if (search) {
+    //     filter.$or = [
+    //         { title: { $regex: search, $options: "i" } },
+    //         { location: { $regex: search, $options: "i" } },
+    //         { country: { $regex: search, $options: "i" } },
+    //     ];
+    // }
+
+
+    if (search) {
+    filter.$or = [
+        { title: { $regex: search, $options: "i" } },
+        { location: { $regex: search, $options: "i" } },
+        { country: { $regex: search, $options: "i" } },
+    ];
+
+    // If search is a number, search by price
+    const price = Number(search);
+
+        if (!isNaN(price)) {
+            filter.$or.push({
+                price: { $lte: price }
+            });
+        }
+    }
+
+    const allListing = await Listing.find(filter);
+
+    res.render("listings/index", {
+        allListing,
+        selectedCategory: category,
+    });
 };
+
 
 module.exports.renderNewForm =  (req, res) => {
   res.render("listings/new.ejs");

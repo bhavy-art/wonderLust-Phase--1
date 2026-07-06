@@ -99,13 +99,13 @@ body{
 }
 
 /* Review */
-.review-card{
+/* .review-card{
     display: flex;
-    /* padding-left: 5px; */
+     padding-left: 5px; 
     justify-content: space-evenly;
     align-items: center;
-    /* border: 1px solid black; */
-}
+     border: 1px solid black; 
+} */
 
 
 
@@ -113,4 +113,171 @@ body{
 #map{
     height: 400px;
     width: 100%;
+}
+
+
+
+.review-form-card{
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.1);
+}
+
+.review-form-card input,
+.review-form-card textarea{
+    border-radius:10px;
+}
+
+.review-form-card button{
+    transition:0.3s;
+}
+
+.review-form-card button:hover{
+    transform:translateY(-2px);
+}
+
+
+
+.review-card{
+    background-color: #111;
+    color: white;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    transition: 0.3s ease;
+}
+
+.review-card:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+}
+
+.review-card .card-title{
+    color: white;
+    font-weight: 600;
+}
+
+.review-card .card-text{
+    color: #d1d5db;
+}
+
+.review-card .btn{
+    border-radius: 20px;
+}
+
+
+/* ================= REVIEW CARD ================= */
+
+/* .review-card{
+    background:#111;
+    color:white;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    transition:.3s;
+}
+
+.review-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 12px 30px rgba(0,0,0,.45);
+}
+
+.review-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.review-user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.review-avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#2b2b2b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.review-user h5{
+    color:white;
+    font-weight:600;
+    margin:0;
+}
+
+.review-comment{
+    color:#d6d6d6;
+    font-size:16px;
+    margin-left:70px;
+    margin-top:15px;
+    line-height:1.6;
+}
+
+.review-card .btn-danger{
+    border-radius:25px;
+    padding:7px 18px;
+} */
+
+
+
+/* ========= REVIEW CARD ========= */
+
+.review-card{
+    background:#111;
+    color:#fff;
+    border-radius:18px;
+    padding:20px 25px;
+    margin-bottom:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.review-header{
+    display:flex;
+    align-items:center;
+}
+
+.review-user{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.review-avatar{
+    width:55px;
+    height:55px;
+    border-radius:50%;
+    background:#2b2b2b;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size:28px;
+}
+
+.review-user h5{
+    margin:0;
+    color:white;
+}
+
+.review-comment{
+    margin-top:18px;
+    margin-left:70px;
+    color:#d8d8d8;
+    font-size:16px;
+}
+
+.review-card form{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:18px;
+}
+
+.review-card .btn-danger{
+    border-radius:30px;
+    padding:8px 18px;
 }

@@ -29,6 +29,23 @@ const listingSchema = new mongoose.Schema({
     type: String,
   },
 
+  category: {
+    type: String,
+    enum: [
+        "Trending",
+        "Rooms",
+        "Iconic Cities",
+        "Mountain",
+        "Castles",
+        "Amazing Pools",
+        "Camping",
+        "Farms",
+        "Arctic",
+        "Domes",
+    ],
+    default: "Trending",
+},
+
   reviews: [
     {
       type: Schema.Types.ObjectId,
