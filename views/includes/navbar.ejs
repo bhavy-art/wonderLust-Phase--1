@@ -17,11 +17,29 @@
     border-radius: 25px;
     padding: 0.5rem 3rem 0.5rem 3rem;
   }
+
+  .navbar-brand{
+    font-size: 900;
+    font-weight: bold;
+}
+
+.navbar-brand i{
+    color: #fe424d;
+}
+
+.brand-name{
+    color: #222;
+    font-size: 1.4rem;
+}
 </style>
 
 <nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a>
+    <!-- <a class="navbar-brand" href="/listings"><i class="fa-regular fa-compass"></i></a> -->
+     <a class="navbar-brand d-flex align-items-center" href="/listings">
+        <i class="fa-regular fa-compass me-2"></i>
+        <span class="brand-name">StayNest</span>
+      </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
       <span class="navbar-toggler-icon"></span>
     </button>
