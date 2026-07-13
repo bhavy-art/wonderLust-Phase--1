@@ -15,6 +15,7 @@ const ExpressError = require("./utils/ExpressError.js");
 // const Review = require("./models/review.js");
 // const {listingSchema, reviewSchema} = require("./schema.js");
 const session = require("express-session");
+const MongoStore = require("connect-mongo").default;
 const flash = require("connect-flash");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
@@ -24,19 +25,36 @@ const listingRouter = require("./routes/listing.js");
 const reviewRouter = require("./routes/review.js");
 const userRouter = require("./routes/user.js");
 
+// const dbUrl = process.env.ATLASDB_URL;
+
+// main()
+//   .then(() => {
+//     console.log("connected to db");
+//   })
+//   .catch((err) => {
+//     console.log(err);
+//   });
+
+// async function main() {
+//   console.log(process.env.ATLASDB_URL);
+//   await mongoose.connect(dbUrl);
+// }
+
+
+
+
 const dbUrl = process.env.ATLASDB_URL;
 
-main()
-  .then(() => {
-    console.log("connected to db");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+mongoose.connect(dbUrl || process.env.ATLASDB_URL)
+.then(() => {
+    console.log("Connected to MongoDB");
+})
+.catch(err => {
+    console.log(err.message);
+});
 
-async function main() {
-  await mongoose.connect(dbUrl);
-}
+
+console.log("Db connection :",dbUrl)
 
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "views"));
@@ -45,9 +63,26 @@ app.use(methodOverride("_method"));
 app.engine("ejs", ejsMate);
 app.use(express.static(path.join(__dirname,"/public")));
 
+
+
+// mongo store for session
+const store = MongoStore.create({
+  mongoUrl: dbUrl,
+  crypto: {
+    secret: process.env.SECRET,
+  },
+  touchAfter: 24 * 3600,
+});
+
+store.on("error", (err) => {
+  console.log("STORE ERROR", err);
+});
+
+
 // session
 const sessionOptions = {
-  secret: "mysupersecretcode",
+  store: store,
+  secret: process.env.SECRET,
   resave: false,
   saveUninitialized: true,
   cookie: {
